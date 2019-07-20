@@ -1,0 +1,37 @@
+*, *:before, *:after{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: sans-serif;
+}
+
+.interface__initial{
+    display: flex;
+    font-size: 48px;
+}
+
+.interface__input{
+    font-size: 26px;
+    width: 140px;
+}
+
+.interface__submit{
+    font-size: 26px;
+    padding: 10px;
+    border: 2px solid #000;
+    cursor: pointer;
+}
+
+.interface__submit:active{
+    border: 2px solid #0000ff;
+}
+
+.interface__initial__title{
+    margin-right: 8px;
+}
+
+.garden{
+    display: none;
+    height: 635px;
+    background: url(assets/bckg.jpg) repeat-x bottom;
+}
