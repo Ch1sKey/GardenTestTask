@@ -19,7 +19,27 @@
             <div class="interface__initial__title">Создать сад:</div>
             <input type="number" min="1" max="100" placeholder="Деревьев" id="trees" class="interface__input">
             <input type="number" min="1" max="100" placeholder="Яблок" id="apples" class="interface__input">
-            <button class="interface__submit">Создать</button>  
+            <button class="create interface__button">Создать</button>  
+        </div>
+        <div class="interface__stats">
+            <div class="interface__stats__item">
+                Возраст сада <img src="assets/days.png" alt="sun and moon"> <span class = "garden_age"></span>
+            </div>
+            <div class="interface__stats__item">
+                Яблок на деревьях <img src="assets/apple--small.png" alt="apple"> <span class="apples_counter"></span>
+            </div>
+            <div class="interface__stats__item">
+                Всего деревьев <img src="assets/tree--small.png" alt="tree">  <span class = "trees_counter"></span>
+            </div>
+            <div class="interface__stats__item">
+                На земле <img src="assets/apple--ground.png" alt="apple on the ground"> <span class = "falled"></span>
+            </div>
+            <div class="interface__stats__item">
+                Сгнило <img src="assets/apple--small--rotten.png" alt="rotten apple"> <span class = "rotten"></span>
+            </div>            
+        </div>
+        <div class="interface__controls">
+            <button class = "passDay interface__button">Новый день</button>
         </div>
     </div>
     <div class="garden"></div>

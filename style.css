@@ -7,7 +7,34 @@
 
 .interface__initial{
     display: flex;
+    justify-content: center;
+    margin-top: 10px;
     font-size: 48px;
+}
+
+.interface__stats{
+    display: none;
+    font-size: 45px;
+}
+
+.interface__stats__item{
+    display: flex;
+    align-items: center;
+}
+
+.interface__stats__item img{
+    margin: 0 10px ;
+}
+
+.interface__controls{
+    display: none;
+}
+
+.interface__controls button{
+    margin: 10px;
+    padding: 5px;
+    font-size: 24px;
+
 }
 
 .interface__input{
@@ -15,14 +42,14 @@
     width: 140px;
 }
 
-.interface__submit{
+.interface__button{
     font-size: 26px;
     padding: 10px;
     border: 2px solid #000;
     cursor: pointer;
 }
 
-.interface__submit:active{
+.interface__button:active{
     border: 2px solid #0000ff;
 }
 
@@ -33,5 +60,26 @@
 .garden{
     display: none;
     height: 635px;
+    width: 1920px;
+    position: relative;
     background: url(assets/bckg.jpg) repeat-x bottom;
+}
+
+.garden .tree{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 150px;
+    height: 200px;
+    background: url(assets/tree.png) no-repeat;
+    background-size: contain;
+}
+
+.garden .apple{
+    top: 0px;
+    left: 0px;    
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    background: url(assets//apple--tiny.png) no-repeat center;
 }
