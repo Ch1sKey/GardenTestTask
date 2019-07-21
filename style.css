@@ -5,6 +5,15 @@
     font-family: sans-serif;
 }
 
+@keyframes appleFall{
+    0%{
+        transform: translate(0 0) rotate(0);
+    }
+    100%{
+        transform: translate(0, 120px) rotate(30deg)
+    }
+}
+
 .interface__initial{
     display: flex;
     justify-content: center;
@@ -69,6 +78,7 @@
     position: absolute;
     top: 0px;
     left: 0px;
+    z-index: 2;
     width: 150px;
     height: 200px;
     background: url(assets/tree.png) no-repeat;
@@ -76,10 +86,24 @@
 }
 
 .garden .apple{
+    z-index: 3;
     top: 0px;
     left: 0px;    
     position: absolute;
     width: 21px;
     height: 21px;
     background: url(assets//apple--tiny.png) no-repeat center;
+}
+
+.garden .apple--falled{
+    animation-name: appleFall;
+    animation-fill-mode: forwards;
+    animation-duration: .5s;    
+    z-index: 1;
+}
+
+.garden .apple--rotten{
+    z-index: 1;
+    transform: translate(0, 120px) rotate(30deg);
+    background: url(assets/apple--tiny--rotten.png) no-repeat center;
 }

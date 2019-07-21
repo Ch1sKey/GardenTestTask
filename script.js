@@ -14,16 +14,21 @@ var Apple = function(paretnTreeId,isNew){
     this.rotten = false;
     this.onTree = true;
     this.paretnTreeId = paretnTreeId;
-    this.old = isNew ? 0 : Math.floor(Math.random()*30);
-    // this.old = 28
+    this.oldOutOfTree = 0;
+    this.old = isNew ? 0 : Math.floor(Math.random()*29);
 }
 
 Apple.prototype.passDay = function(){
     this.old += 1;
-    if(this.old === 30){
+    if(!this.onTree){
+        this.oldOutOfTree += 1;
+    }    
+
+    if(this.old >= 30){
         this.onTree = false;
-    }
-    if(this.old === 31){
+    }    
+
+    if(this.oldOutOfTree > 0){
         this.rotten = true;
     }
 
@@ -33,8 +38,8 @@ Apple.prototype.passDay = function(){
 var Tree = function(apples, parentGardenId){
     var id = createId();
     this.coords = {
-        y: Math.floor(Math.random()*350) + 90,
-        x: Math.floor(Math.random()*1850) + 10
+        y: Math.floor(Math.random()*230) + 90,
+        x: Math.floor(Math.random()*1750) + 10
     }
     this.old = 0;
     this.id = id;
@@ -61,12 +66,12 @@ Tree.prototype.passDay = function(){
     }
     this.apples = this.apples.filter(function(apple){
         apple.passDay();
-        if(apple.rotten && that.parentGardenId){
+        if(apple.rotten  && that.parentGardenId){
             Garden.list.find(function(garden){
                 return garden.id === that.parentGardenId;
             }).rottenCounter += 1;
         }
-        return !apple.rotten;
+        return (apple.oldOutOfTree < 4);
     });
 }
 
@@ -83,6 +88,10 @@ var Garden = function(trees, apples){
 }
 
 Garden.list = [];
+
+Garden.prototype.addTree = function(apples){
+    this.trees.push(new Tree(apples, this.id))
+}
 
 Garden.prototype.getAge = function(){
     return this.old;
@@ -134,6 +143,7 @@ $(document).ready(function(){
         $('.rotten').text(garden.rottenCounter);
         $('.falled').text(garden.getFalledApplesCount());
         $('.apples_counter').text(garden.getOnTreeApplesCount());
+        $('.garden').empty()
         garden.trees.forEach(function(tree){
             var treeElem = $('<div>', {
                 class: 'tree',
@@ -145,14 +155,20 @@ $(document).ready(function(){
             treeElem.appendTo('.garden');
 
             tree.apples.forEach(function(apple){
+                var appleClass = !apple.onTree ? ' apple--falled': '';
+                appleClass = apple.rotten ? ' apple--rotten' : appleClass;
+                console.log(apple.rotten)
                 var apple = $('<div>', {
-                    class:'apple',
+                    class: 'apple'+appleClass,
                     css:{
+
                         top: apple.coords.y,
                         left: apple.coords.x,
                     }
                 })
                 apple.appendTo(treeElem)
+
+
             })
 
         })
@@ -160,7 +176,7 @@ $(document).ready(function(){
     }
 
     $('.create').on('click', function(){
-        var trees = +$('#trees').val() || 5;
+        var trees = +$('#trees').val() || 10;
         var apples = +$('#apples').val() || 5;
         garden = new Garden(trees,apples);
         $('.interface__initial').hide();
