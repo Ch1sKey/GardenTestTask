@@ -157,7 +157,6 @@ $(document).ready(function(){
             tree.apples.forEach(function(apple){
                 var appleClass = !apple.onTree ? ' apple--falled': '';
                 appleClass = apple.rotten ? ' apple--rotten' : appleClass;
-                console.log(apple.rotten)
                 var apple = $('<div>', {
                     class: 'apple'+appleClass,
                     css:{
@@ -184,6 +183,7 @@ $(document).ready(function(){
         $('.interface__stats').show();
         $('.interface__controls').show();
         render();
+        console.log(garden.getAppleList())
     });
     $('.create').click()
     $('.passDay').on('click', function(){
