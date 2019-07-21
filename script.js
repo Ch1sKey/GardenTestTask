@@ -81,7 +81,6 @@ var Garden = function(trees, apples){
     this.old = 0;
     this.rottenCounter = 0;
     this.trees = Array(trees || 0).fill().map(function(){
-        console.log(id);
         return new Tree(apples, id);
     });
     Garden.list.push(this);
@@ -183,9 +182,7 @@ $(document).ready(function(){
         $('.interface__stats').show();
         $('.interface__controls').show();
         render();
-        console.log(garden.getAppleList())
     });
-    $('.create').click()
     $('.passDay').on('click', function(){
         garden.passDay();
         render();
