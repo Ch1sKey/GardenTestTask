@@ -66,7 +66,7 @@ Tree.prototype.passDay = function(){
     }
     this.apples = this.apples.filter(function(apple){
         apple.passDay();
-        if(apple.rotten  && that.parentGardenId){
+        if(apple.rotten  && that.parentGardenId && apple.oldOutOfTree === 1){
             Garden.list.find(function(garden){
                 return garden.id === that.parentGardenId;
             }).rottenCounter += 1;
@@ -159,7 +159,6 @@ $(document).ready(function(){
                 var apple = $('<div>', {
                     class: 'apple'+appleClass,
                     css:{
-
                         top: apple.coords.y,
                         left: apple.coords.x,
                     }
